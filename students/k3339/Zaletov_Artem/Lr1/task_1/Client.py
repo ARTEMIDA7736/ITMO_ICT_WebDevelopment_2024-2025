@@ -1,4 +1,5 @@
 import socket
+
 def udp_client(host='127.0.0.1', port=12345):
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     message = 'Hello, server'
