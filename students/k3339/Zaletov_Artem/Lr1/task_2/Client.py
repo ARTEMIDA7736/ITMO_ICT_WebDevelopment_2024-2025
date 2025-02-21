@@ -12,7 +12,7 @@ def get_positive_number(numb):
 
 def start_client():
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    client_socket.connect(('localhost', 12345))
+    client_socket.connect(('localhost', 12346))
     a = get_positive_number("Введите длину первого катета: ")
     b = get_positive_number("Введите длину второго катета: ")
     data = f"{a},{b}"

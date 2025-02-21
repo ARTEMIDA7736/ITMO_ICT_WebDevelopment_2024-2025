@@ -1,6 +1,6 @@
 import socket
 
-def udp_server(host='127.0.0.1', port=12345):
+def udp_server(host='127.0.0.2', port=12345):
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.bind((host, port))
     print(f"Сервер запущен")

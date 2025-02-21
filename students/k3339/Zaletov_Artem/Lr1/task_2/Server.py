@@ -2,7 +2,7 @@ import socket
 import math
 def start_server():
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server_socket.bind(('localhost', 12345))
+    server_socket.bind(('localhost', 12346))
     server_socket.listen()
     while True:
         conn, addr = server_socket.accept()
@@ -17,5 +17,6 @@ def start_server():
             conn.sendall(f"Ошибка: {str(e)}".encode())
         finally:
             conn.close()
+
 if __name__ == '__main__':
     start_server()
