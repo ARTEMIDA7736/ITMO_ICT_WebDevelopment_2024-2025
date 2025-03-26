@@ -12,6 +12,8 @@ import ParticipationView from "@/components/ParticipationView.vue";
 import ParticipantsView from "@/components/ParticipantsView.vue";
 import DogRegister from "@/views/reader/DogRegister.vue"
 import DogGrade from "@/views/reader/DogGrade.vue"
+import DogEdit from "@/views/reader/DogEdit.vue"
+import ParticipationEdit from "@/views/reader/ParticipationEdit.vue";
 
 Vue.use(VueRouter)
 
@@ -47,6 +49,18 @@ const routes = [
     component: ProfileEdit
   },
   {
+    path: '/participants/DogEdit/:dogId',
+    name: 'Dog_edit',
+    component: DogEdit,
+    props: true
+  },
+  {
+    path: '/participation/ParticipationEdit/:dogId',
+    name: 'Participation_Edit',
+    component: ParticipationEdit,
+    props: true
+  },
+  {
     path: '/about',
     name: 'about',
     component: () => import('../views/AboutView.vue')
@@ -59,7 +73,7 @@ const routes = [
     path: '/participants',
     component: ParticipantsView
   },
-  
+
   {
     path: '/show/profile/regdog',
     name: 'regdog',

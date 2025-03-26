@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import *
-
+from .views import ParticipantRetrieveUpdateAPIView
 
 app_name = "dogsapp"
 
@@ -10,6 +10,8 @@ urlpatterns = [
     path('participation/', ParticipationAPIList.as_view()),
     path('participants/', ParticipantAPIList.as_view()),
 
+    path('participants/<int:pk>/', ParticipantRetrieveUpdateAPIView.as_view(), name='participant-update'),
+    path('participants/<int:pk>', ParticipantsAPIView.as_view()),
     path('participant_ring/<int:pk>', RingParticipationAPIView.as_view()),
     path('club_breeds/<int:pk>', ClubBreedsRetrieveAPIView.as_view()),
     path('dismissed_count/<int:pk>', DismissedCountAPIView.as_view()),

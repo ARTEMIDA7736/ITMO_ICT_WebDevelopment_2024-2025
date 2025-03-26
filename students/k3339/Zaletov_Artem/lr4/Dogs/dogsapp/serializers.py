@@ -36,6 +36,11 @@ class RingParticipationSerializer(serializers.ModelSerializer):
         model = Participation
         fields = ["rings"]
 
+class Participantsid(serializers.ModelSerializer):
+
+    class Meta:
+        model = Participant
+        fields = ["id","name","breed","age","family","owner_data"]
 
 class ParticipantBreedsSerializer(serializers.ModelSerializer):
     '''Количество участников по каждой породе?'''
@@ -80,3 +85,13 @@ class BreedExpertsSerializer(serializers.ModelSerializer):
         model = Ring
         fields = ["breed", "experts"]
 
+class ParticipantUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Participant
+        fields = ["name", "breed", "age", "family", "owner_data"]
+
+    def update(self, instance, validated_data):
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        instance.save()
+        return instance

@@ -1,42 +1,39 @@
 <template>
   <div>
-    <v-card
-      elevation="2"
-      outlined
-      class="my-2"
-    >  
+    <v-card elevation="2" outlined class="my-4 card-container">
       <v-card-text>
-        <h2>
-          <a href="/participation" style="text-decoration: none; color: #283593">Participations</a><br>
-          <a href="/participants" style="text-decoration: none; color: #283593">Participants</a> <br>
-          <template  v-if="this.authorized">
-            <a @click="goProfile" style="text-decoration: none; color: #283593">Profile</a><br>
-            <a @click="goLogOut" style="text-decoration: none; color: #283593">Log Out</a><br>
+        <h2 class="section-title">Меню</h2>
+        <div class="nav-links">
+          <!--<v-btn text @click="goParticipations" class="nav-btn">Participations</v-btn>
+          <v-btn text @click="goParticipants" class="nav-btn">Participants</v-btn>-->
+
+          <template v-if="authorized">
+            <v-btn text @click="goParticipations" class="nav-btn">Результаты</v-btn>
+            <v-btn text @click="goParticipants" class="nav-btn">Участники</v-btn>
+            <!--<v-btn text @click="goLogOut" class="nav-btn">Клубы</v-btn>-->
+            <v-btn text @click="goProfile" class="nav-btn">Профиль</v-btn>
+            <v-btn text @click="goLogOut" class="nav-btn">Выйти</v-btn>
           </template>
+
           <template v-else>
-            <a @click="goSignIn" style="text-decoration: none; color: #283593">Sign In</a><br>
-            <router-link to="/show/signup" style="text-decoration: none; color: #283593">Sign Up</router-link>
+            <v-btn text @click="goSignIn" class="nav-btn">Войти</v-btn>
+            <v-btn to="/show/signup" class="nav-btn">Регистрация</v-btn>
           </template>
-        </h2>
+        </div>
       </v-card-text>
     </v-card>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-/* eslint-disable */
-
 export default {
-  name: 'Home',
+  name: 'HomePage', // Renamed component to multi-word
 
   data: () => ({
     authorized: false
   }),
 
   created () {
-    console.log('hehe' + ' ' + sessionStorage.getItem('auth_token'))
-    console.log('hehe' + ' ' + sessionStorage.getItem('username'))
     if (sessionStorage.getItem('auth_token')) {
       if (sessionStorage.getItem('auth_token') !== '-1') {
         this.authorized = true
@@ -45,18 +42,63 @@ export default {
   },
 
   methods: {
-
-    goProfile () {
-      this.$router.push({ name: 'profile' })
+    goParticipations() {
+      this.$router.push('/participation');
     },
 
-    goLogOut () {
-      this.$router.push({ name: 'logout' })
+    goParticipants() {
+      this.$router.push('/participants');
     },
 
-    goSignIn () {
-      this.$router.push({ name: 'signin' })
+    goProfile() {
+      this.$router.push({ name: 'profile' });
+    },
+
+    goLogOut() {
+      this.$router.push({ name: 'logout' });
+    },
+
+    goSignIn() {
+      this.$router.push({ name: 'signin' });
     }
   }
 }
 </script>
+
+<style scoped>
+.card-container {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #3f51b5;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.nav-btn {
+  text-decoration: none;
+  color: #283593;
+  font-weight: bold;
+  width: 100%;
+  max-width: 250px;
+}
+
+.nav-btn:hover {
+  background-color: #f1f1f1;
+  transition: background-color 0.3s ease;
+}
+</style>

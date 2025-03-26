@@ -5,7 +5,7 @@
       color="#3949AB"
       dark
     >
-      <div class="d-flex align-center"> 
+      <div class="d-flex align-center">
         <div class="text-h4">Dogs register system</div>
       </div>
 

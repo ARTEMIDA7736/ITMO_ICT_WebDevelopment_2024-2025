@@ -1,6 +1,6 @@
 <template>
    <div class="app">
-     <h1>Participation</h1>
+     <h1 class="midpos">Результаты</h1>
        <a href="/" style="text-decoration: none; color: #283593">Home</a><br><br>
         <!--<button v-on:click="fetchParticipants">Get list of participations</button>-->
 
@@ -44,3 +44,9 @@ export default {
  }
 }
 </script>
+<style>
+.midpos{
+  text-align: center;
+  margin-top: 20px;
+}
+</style>

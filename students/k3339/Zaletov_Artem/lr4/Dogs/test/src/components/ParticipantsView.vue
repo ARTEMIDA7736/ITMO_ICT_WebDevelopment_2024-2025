@@ -1,7 +1,9 @@
 <template>
    <div class="app">
-     <h1>Participants</h1>
-       <a href="/" style="text-decoration: none; color: #283593">Home</a><br><br>
+     <h1 class="midpos">Участники</h1>
+            <div class="home-button-container">
+      <v-btn color="secondary" to="/" class="home-button">Home</v-btn>
+     </div>
       <!--<button v-on:click="fetchParticipants">Get list of participants</button>-->
 
      <participants-list
@@ -45,3 +47,9 @@ export default {
  }
 }
 </script>
+<style>
+.midpos{
+  text-align: center;
+  margin-top: 20px;
+}
+</style>

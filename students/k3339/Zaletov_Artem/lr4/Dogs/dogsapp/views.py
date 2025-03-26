@@ -1,9 +1,14 @@
 from rest_framework import generics
+from rest_framework.generics import UpdateAPIView
 from rest_framework.views import APIView, Response
 from .serializers import *
 from .models import *
 from django.db.models.aggregates import Count, Sum
+from rest_framework.generics import RetrieveUpdateAPIView
 
+class ParticipantRetrieveUpdateAPIView(RetrieveUpdateAPIView):
+    queryset = Participant.objects.all()
+    serializer_class = ParticipantUpdateSerializer
 
 class ExpertAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ExpertSerializer
@@ -15,6 +20,10 @@ class ParticipationAPIList(generics.ListCreateAPIView):
 
 class ParticipantAPIList(generics.ListCreateAPIView):
     serializer_class = ParticipantSerializer
+    queryset = Participant.objects.all()
+
+class ParticipantsAPIView(generics.RetrieveAPIView):
+    serializer_class = Participantsid
     queryset = Participant.objects.all()
 
 
@@ -36,6 +45,7 @@ class DismissedCountAPIView(generics.RetrieveAPIView):
 class BreedExpertsAPIView(generics.ListAPIView):
     serializer_class = BreedExpertsSerializer
     queryset = Ring.objects.all()
+
 
 
 class BreedCountAPIView(APIView):
@@ -75,3 +85,9 @@ class ReportAPIView(APIView):
                    'medals': medals}
         return Response(content)
 
+class ParticipantUpdateView(UpdateAPIView):
+    queryset = Participant.objects.all()
+    serializer_class = ParticipantUpdateSerializer
+
+    def patch(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
